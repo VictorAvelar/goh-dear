@@ -186,3 +186,70 @@ func TestClient_NewAPIRequest_ErrJSONBodyMarshaling(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestClient_Do(t *testing.T) {
+	setEnv()
+	setup()
+	defer func() {
+		tearDown()
+		unsetEnv()
+	}()
+
+	tMux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "GET")
+		testHeader(t, r, AuthHeader, fmt.Sprintf("%s %s", TokenType, testTkn))
+		w.WriteHeader(http.StatusOK)
+	})
+
+	req, err := tClient.NewAPIRequest(http.MethodGet, "test", nil)
+
+	if err != nil {
+		t.Fail()
+	}
+
+	assert.Nil(t, err)
+
+	res, _ := tClient.Do(req)
+
+	assert.Equal(t, http.StatusOK, res.StatusCode)
+}
+
+func TestClient_Do_Err(t *testing.T) {
+	setEnv()
+	defer unsetEnv()
+	setup()
+	defer tearDown()
+	req, _ := tClient.NewAPIRequest("GET", "test", nil)
+	req.URL = nil
+	_, err := tClient.Do(req)
+
+	if err == nil {
+		t.Fail()
+	}
+
+	assert.EqualError(t, err, "Get \"\": http: nil Request.URL")
+}
+
+func TestClient_Do_ResponseErr(t *testing.T) {
+	setEnv()
+	setup()
+	defer func() {
+		tearDown()
+		unsetEnv()
+	}()
+
+	tMux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "GET")
+		testHeader(t, r, AuthHeader, fmt.Sprintf("%s %s", TokenType, testTkn))
+		w.WriteHeader(http.StatusNotFound)
+	})
+
+	req, _ := tClient.NewAPIRequest("GET", "test", nil)
+	_, err := tClient.Do(req)
+
+	if err == nil {
+		t.Fail()
+	}
+
+	assert.EqualError(t, err, "response failed with status 404|404 Not Found")
+}

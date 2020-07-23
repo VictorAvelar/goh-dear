@@ -80,6 +80,7 @@ func setup() {
 	tMux = http.NewServeMux()
 	tServer = httptest.NewServer(tMux)
 	tClient, _ = NewClient(nil, "", "")
+	tClient.BaseURL, _ = url.Parse(tServer.URL + "/")
 }
 
 // defer after setup

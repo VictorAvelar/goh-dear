@@ -7,13 +7,12 @@ declared inside the `.travis.yml` file.
 
 | Version | Supported          |
 | ------- | ------------------ |             |
-| 1.13.x   | :white_check_mark: |
+| 1.13.x   | :x: |
 | 1.14.x   | :white_check_mark: |
-| master   | :x:                |
+| master   | :white_check_mark:                |
 
 ## Reporting a Vulnerability
 
-For a vulnerability in a dependency or third party package, please create an issue and also be sure to report the problem in the repository
-were the dependency is developed.
+For a vulnerability in a dependency or third party package, please create an issue and be sure to report the problem in the original repository.
 
-For a vulnerability issue detected on this repository, please send an email to [deltatuts@gmail.com](mailto:deltatuts@gmail.com)
+For a vulnerability issue detected on this repository, please email [deltatuts@gmail.com](mailto:deltatuts@gmail.com)

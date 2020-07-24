@@ -23,8 +23,7 @@ var (
 // CheckResponse checks the API response for errors, and returns them if
 // present. A response is considered an error if it has a status code outside
 // the 200 range.
-// API error responses are expected to have either no response
-// body, or a JSON response body.
+// API's error responses must have either no response body, or a JSON response body.
 func CheckResponse(r *http.Response) error {
 	if r.StatusCode >= http.StatusMultipleChoices {
 		return newError(r)

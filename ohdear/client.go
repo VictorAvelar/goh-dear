@@ -85,7 +85,7 @@ func (c *Client) Do(req *http.Request) (*Response, error) {
 }
 
 // Response  wraps the standard http.Response returned from oh-dear
-// and provides non blocking access to the request content.
+// and provides non-blocking access to the request content.
 type Response struct {
 	*http.Response
 	content []byte

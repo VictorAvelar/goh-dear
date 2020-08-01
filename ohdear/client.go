@@ -144,7 +144,7 @@ func NewClient(baseClient *http.Client, baseURL, apiToken string) (dear *Client,
 		dear.token = tkn
 	} else {
 		if apiToken == "" {
-			return nil, ErrEmtpyAPIToken
+			return nil, ErrEmptyAPIToken
 		}
 
 		dear.token = apiToken

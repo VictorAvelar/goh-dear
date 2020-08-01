@@ -16,7 +16,7 @@ const (
 
 // Oh-dear package level errors
 var (
-	ErrEmtpyAPIToken  error = fmt.Errorf("your api token is empty, please provide a non-empty token")
+	ErrEmptyAPIToken  error = fmt.Errorf("your api token is empty, please provide a non-empty token")
 	ErrInvalidBaseURL error = fmt.Errorf("your base url must contain a trailing slash")
 )
 

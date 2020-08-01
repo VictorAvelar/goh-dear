@@ -95,8 +95,8 @@ const SingleSiteResponse = `{
   "team_id": 1,
   "latest_run_date": "2019-09-16 07:29:02",
   "summarized_check_result": "succeeded",
-  "created_at": "20171106 07:40:49",
-  "updated_at": "20171106 07:40:49",
+  "created_at": "2017-11-06 07:40:49",
+  "updated_at": "2017-11-06 07:40:49",
   "checks": [
 	{
 	  "id": 100,
@@ -113,7 +113,7 @@ const SingleSiteResponse = `{
 	  "enabled": true,
 	  "latest_run_ended_at": "2019-09-16 07:29:05",
 	  "latest_run_result": "succeeded"
-	},
+	}
   ]
 }`
 

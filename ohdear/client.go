@@ -29,6 +29,7 @@ type Client struct {
 	common  srv // Reuse a single struct instead of allocating one for each service on the heap.
 	token   string
 	// Services
+	Sites *SitesSrv
 }
 
 // NewAPIRequest is a wrapper around the http.NewRequest function.
@@ -137,6 +138,7 @@ func NewClient(baseClient *http.Client, baseURL, apiToken string) (dear *Client,
 	dear.common.client = dear
 
 	// services for resources
+	dear.Sites = (*SitesSrv)(&dear.common)
 
 	// Parse authorization from environment
 	// or user provided string.

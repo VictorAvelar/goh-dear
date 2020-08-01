@@ -3,6 +3,8 @@ package ohdear
 import (
 	"fmt"
 	"net/http"
+	"strings"
+	"time"
 )
 
 // Oh-dear package level constants
@@ -52,4 +54,19 @@ func newError(r *http.Response) *Error {
 	e.Code = r.StatusCode
 	e.Message = r.Status
 	return &e
+}
+
+type CustomDate struct {
+	time.Time
+}
+
+func (d *CustomDate) UnmarshalJSON(b []byte) error {
+	s := string(b)
+	s = strings.Trim(s, "\"")
+	t, err := time.Parse("2006-01-02 15:04:05", s)
+	if err != nil {
+		return err
+	}
+	d.Time = t
+	return nil
 }

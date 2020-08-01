@@ -3,9 +3,9 @@ package ohdear
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
-	"time"
 
 	"github.com/google/go-querystring/query"
 )
@@ -18,20 +18,20 @@ type SitesSrv srv
 
 // Site represents a monitored website and its properties.
 type Site struct {
-	ID                                   uint       `json:"id,omitempty"`
-	URL                                  *url.URL   `json:"url,omitempty"`
-	SortURL                              *url.URL   `json:"sort_url,omitempty"`
-	Label                                string     `json:"label,omitempty"`
-	TeamID                               uint       `json:"team_id,omitempty"`
-	LatestRunDate                        *time.Time `json:"latest_run_date,omitempty"`
-	CreatedAt                            *time.Time `json:"created_at,omitempty"`
-	UpdatedAt                            *time.Time `json:"updated_at,omitempty"`
-	Checks                               []struct{} `json:"checks,omitempty"`
-	SummarizedChecksResult               string     `json:"summarized_checks_result,omitempty"`
-	FriendlyName                         string     `json:"friendly_name,omitempty"`
-	UsesHTTPS                            bool       `json:"uses_https,omitempty"`
-	BrokenLinksCheckIncludeExternalLinks bool       `json:"broken_links_check_include_external_links,omitempty"`
-	BrokenLinksWhitelistedURLS           []*url.URL `json:"broken_links_whitelisted_urls,omitempty"`
+	ID                                   uint        `json:"id,omitempty"`
+	URL                                  string      `json:"url,omitempty"`
+	SortURL                              string      `json:"sort_url,omitempty"`
+	Label                                string      `json:"label,omitempty"`
+	TeamID                               uint        `json:"team_id,omitempty"`
+	LatestRunDate                        *CustomDate `json:"latest_run_date,omitempty"`
+	CreatedAt                            *CustomDate `json:"created_at,omitempty"`
+	UpdatedAt                            *CustomDate `json:"updated_at,omitempty"`
+	Checks                               []struct{}  `json:"checks,omitempty"`
+	SummarizedChecksResult               string      `json:"summarized_checks_result,omitempty"`
+	FriendlyName                         string      `json:"friendly_name,omitempty"`
+	UsesHTTPS                            bool        `json:"uses_https,omitempty"`
+	BrokenLinksCheckIncludeExternalLinks bool        `json:"broken_links_check_include_external_links,omitempty"`
+	BrokenLinksWhitelistedURLS           []*url.URL  `json:"broken_links_whitelisted_urls,omitempty"`
 }
 
 // List returns all the sites in your account.
@@ -100,6 +100,7 @@ func (ss *SitesSrv) Get(id uint) (site *Site, err error) {
 	}
 
 	if err = json.Unmarshal(res.content, &site); err != nil {
+		log.Println(err)
 		return
 	}
 

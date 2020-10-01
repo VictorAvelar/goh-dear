@@ -5,9 +5,6 @@ filter:
     - "ohdear/*_test.go"
     - "ohdear/testdata/"
 build:
-  environment:
-    variables:
-      GO111MODULES: 'on'
   nodes:
     analysis:
       project_setup:
@@ -15,7 +12,7 @@ build:
           - 'true'
       environment:
         go:
-          version: go1.14
+          version: go1.15
       tests:
         override:
           - go-scrutinizer-run

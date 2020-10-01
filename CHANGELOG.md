@@ -8,6 +8,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
+- oh-dear sites api implementation
+
 ### Changed
 
 ### Removed

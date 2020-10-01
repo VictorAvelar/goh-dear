@@ -18,6 +18,6 @@ Golang SDK for OH-Dear app by @spatie
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/VictorAvelar/goh-dear)](https://pkg.go.dev/github.com/VictorAvelar/goh-dear)
 [![Go Report Card](https://goreportcard.com/badge/github.com/VictorAvelar/goh-dear)](https://goreportcard.com/report/github.com/VictorAvelar/goh-dear)
 
-## Disclaimer
+## :warning: Disclaimer
 
-I am in no way associated with @spatie or any of their employees, this is an open-source repository.
+I am in no way associated with @spatie nor any of their employees.

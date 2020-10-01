@@ -56,7 +56,6 @@ func TestSitesSrv_Get(t *testing.T) {
 			}
 
 			assert.Equal(t, c.id, got.ID)
-			fmt.Printf("%+v", got)
 		})
 	}
 }

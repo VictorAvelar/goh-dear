@@ -62,7 +62,7 @@ func TestNewClient(t *testing.T) {
 				apiToken:   "",
 			},
 			wantErr: true,
-			err:     ErrEmtpyAPIToken,
+			err:     ErrEmptyAPIToken,
 		},
 	}
 
